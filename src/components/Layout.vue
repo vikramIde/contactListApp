@@ -5,7 +5,7 @@
         <i>menu</i>
       </button>
         <q-toolbar-title :padding="0">
-          Workflow Mobile app
+          Mobile app
         </q-toolbar-title>
       <button v-if="canGoBack" class="" @click="goBack">
             <i class="on-left">keyboard_arrow_left</i>
@@ -25,10 +25,10 @@
           <hr>
           <div class="list-label">System Config</div>
           <q-drawer-link icon="build" to="/manage_data">
-            Manage Data
+            Manage Contact
           </q-drawer-link>
-          <q-drawer-link icon="tab" to="/showcase/layout/tabs">
-            Search Data
+          <q-drawer-link icon="tab" to="/edit_profile">
+            Edit Profile
           </q-drawer-link>
         </div>
       </q-drawer>

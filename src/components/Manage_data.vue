@@ -1,10 +1,17 @@
 <template>
     <div class="layout-padding">
       <p class="caption">
-        <span class="desktop-only">Your Layouts</span>
-        <span class="mobile-only">Your Layouts</span>
+        <span class="desktop-only">Your Contact List</span>
+        <span class="mobile-only">Your Contact List</span>
       </p>
-
+      <q-search
+        v-model="searchModel"
+        :debounce="600"
+        placeholder="Search Contacts"
+        icon="local_hotel"
+        float-label="What is your Contact?"
+        color="blue"
+      />
       <div class="card " v-for="card in cardList">
         <div class="card-title">
           {{card.layoutname}}

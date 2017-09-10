@@ -1,6 +1,6 @@
-# Formapp
+# Contact List App
 
-> A Ncp project
+> A Vab project
 ## Table of Contents
 
 <!-- toc -->
@@ -26,7 +26,7 @@ $ sudo npm install -g quasar-cli
 
 ``` bash
 # Clone this project.
-$ git clone https://bitbucket.org/nanocorp/formapp  # I personally use SSH, but not everyone has it setup
+$ git clone https://github.com/vikramIde/contactListApp.git  # I personally use SSH, but not everyone has it setup
 $ cd formapp
 
 # install dependencies
@@ -44,27 +44,7 @@ $ cordova run
 
 # Gallery 
 
-## 1
-![alt text](https://image.prntscr.com/image/lmQw4NqsTAegshlsGvSx7Q.png "List of templates in Admin pannel")
 
-## 2
-
- ![alt text](https://image.prntscr.com/image/ouYWO0ZlTPie2ky6dvil7g.png "Formeo Form builder on web Admin Pannel")
-
-## 3
-	
- ![alt text](https://files.gitter.im/vikramIde/GqpP/WhatsApp-Image-2017-08-14-at-5.30.26-PM.jpeg "Formeo Form builder on web Admin Pannel")
-
-## 4
-  
-   ![alt text](https://files.gitter.im/vikramIde/1djX/WhatsApp-Image-2017-08-14-at-5.30.26-PM-_1_.jpeg "Formeo Form builder on web Admin Pannel")
-
-## 5
-    
-    ![alt text](https://files.gitter.im/vikramIde/sA9Y/WhatsApp-Image-2017-08-14-at-5.30.26-PM-_2_.jpeg "Formeo Form builder on web Admin Pannel")
-## 6
-    
-    ![alt text](https://files.gitter.im/vikramIde/i60s/WhatsApp-Image-2017-08-14-at-5.30.26-PM-_3_.jpeg "Formeo Form builder on web Admin Pannel")
 
 
 

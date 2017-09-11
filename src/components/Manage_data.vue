@@ -72,10 +72,17 @@ function mapCards (data) {
 
   return List
 }
+function onSuccess(contacts) {
+  alert('Found ' + contacts.length + ' contacts.');
+};
 
+function onError(contactError) {
+  alert('onError!');
+};
 export default {
   mounted () {
     this.getLayouts()
+    this.getContacts()
   },
   data () {
     return {
@@ -89,10 +96,20 @@ export default {
         this.cardList = mapCards(response.data.data)
       })
     },
-
     openFormView (id) {
       Router.replace({ path: 'fillform/' + id })
+    },
+    getContacts () {
+      // find all contacts with 'Bob' in any name field
+      var options      = new ContactFindOptions();
+      options.filter   = "Bob";
+      options.multiple = true;
+      options.desiredFields = [navigator.contacts.fieldType.id];
+      options.hasPhoneNumber = true;
+      var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
+      navigator.contacts.find(fields, onSuccess, onError, options);
     }
+
   }
 }
 

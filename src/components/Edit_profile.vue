@@ -37,9 +37,6 @@
 
 <script>
 
-/**
-  * Structure to store Profile
-**/
 /* global userProfile */
 import Router from 'router'
 export default {

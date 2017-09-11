@@ -3,34 +3,30 @@
         <div class="card " >
           <div class="card-title">
             <label><strong>Name</strong></label>
-            <input type="text" v-model="userProfile.name" name="name">
+            {{userProfile.name}}
           </div>
           <div class="card-content">
             <div class="item-content">
               <div class="item-label"> 
                 <label><strong>Addresse</strong></label>
-                <textarea v-model="userProfile.addresse"></textarea>
+                <p class="item-title">{{userProfile.addresse}}</p>
               </div>
             </div>
           </div>
           <div class="card-actions card-no-top-padding">
             <label><strong>Age</strong></label>
             <div class="text-grey">
-              <input type="text" v-model="userProfile.age" name="age">
+              {{userProfile.age}}
             </div>
              <label><strong>Phone</strong></label>
             <div>
-              <input type="text" v-model="userProfile.phone" name="age">
+              ({{userProfile.phone}} )
             </div>
             <div class="auto"></div> 
-              
+              <button class="primary" @click="openProfileEdit()">
+               Edit <i>edit</i>
+              </button>
           </div>
-            <button class="primary" @click="updateProfile()">
-              Update <i>edit</i>
-            </button>
-            <button class="primary" @click="openProfileEdit()">
-              Cancel <i>close</i>
-            </button>
         </div>
       </div>
 </template>
@@ -53,11 +49,7 @@ export default {
       this.$emit('show_nav')
     },
     openProfileEdit () {
-      Router.replace({path: 'view_profile'})
-    },
-    updateProfile () {
-      window.userProfile = this.userProfile
-      this.openProfileEdit()
+      Router.replace({path: 'edit_profile'})
     }
   },
   data () {
@@ -65,7 +57,6 @@ export default {
       mailHasError: '',
       model: '',
       userProfile: ''
-
     }
   }
 }

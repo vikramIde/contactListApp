@@ -10,7 +10,6 @@
         placeholder="Search Contacts"
         icon="local_hotel"
         float-label="What is your Contact?"
-        color="blue"
       />
       <div class="card " v-for="card in cardList">
         <div class="card-title">

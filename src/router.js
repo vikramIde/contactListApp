@@ -40,6 +40,10 @@ export default new VueRouter({
         {
           path: 'edit_profile',
           component: load('Edit_profile')
+        },
+        {
+          path: 'view_profile',
+          component: load('View_profile')
         }
       ]
     },

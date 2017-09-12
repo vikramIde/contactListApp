@@ -31,8 +31,8 @@
              <label><strong>Phone : </strong></label>
             {{contact.phoneNumbers[0].value}}
           </div>
-          <div class="auto"></div> 
-          <button class="warning clear small" ><i class="on-left">eye</i>view</button>
+          <div class="auto"></div>
+          <a class="warning clear small" href="tel:{{contact.phoneNumbers[0].value}}"><i class="on-left">phone</i> </a>
         </div>        
       </div>
     </div>

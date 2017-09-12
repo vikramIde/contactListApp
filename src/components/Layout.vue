@@ -27,7 +27,7 @@
           <q-drawer-link icon="phone" to="/manage_data">
             Manage Contact
           </q-drawer-link>
-          <q-drawer-link icon="account Box" to="/view_profile">
+          <q-drawer-link icon="face" to="/view_profile">
             Edit Profile
           </q-drawer-link>
         </div>

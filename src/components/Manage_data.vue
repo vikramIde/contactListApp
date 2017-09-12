@@ -9,7 +9,7 @@
         v-model="searchModel"
         :debounce="600"
         placeholder="Search Contacts"
-        icon="local_hotel"
+        icon="search"
         float-label="What is your Contact?"
       />
       </p>

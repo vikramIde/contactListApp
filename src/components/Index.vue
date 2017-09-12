@@ -11,10 +11,6 @@
 
 <script>
 export default {
-  mounted () {
-    console.log('I am index.vue')
-    console.log(this.$refs)
-  },
   methods: {
     openLeftNav () {
       this.$emit('show_nav')

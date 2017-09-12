@@ -29,10 +29,10 @@
         <div class="card-actions card-no-top-padding">
           <div class="text-grey">
              <label><strong>Phone : </strong></label>
-            {{contact.phoneNumbers[0].value}}
+            <a class="warning clear small" href="tel:{{contact.phoneNumbers[0].value}}">{{contact.phoneNumbers[0].value}}<i class="on-left">phone</i> </a>
           </div>
           <div class="auto"></div>
-          <a class="warning clear small" href="tel:{{contact.phoneNumbers[0].value}}"><i class="on-left">phone</i> </a>
+
         </div>        
       </div>
     </div>
@@ -43,13 +43,7 @@ import Router from 'router'
 
 /* global appconfig ,axios */
 
-function onError(contactError) {
-  alert('onError!');
-};
 export default {
-  mounted () {
-    // this.getLayouts()
-  },
   data () {
     return {
       cardList: [],
@@ -58,28 +52,21 @@ export default {
     }
   },
   methods: {
-    // getLayouts () {
-    //   const url = appconfig.dev.BASE_URL + '/api/mobile/get_layouts?api_token=' + appconfig.dev.APP_TOKEN
-    //   axios.get(url).then(response => {
-    //     this.cardList = mapCards(response.data.data)
-    //   })
-    // },
-    openFormView (id) {
-      Router.replace({ path: 'fillform/' + id })
-    },
     getContacts (searchString) {
       // find all contacts with 'Bob' in any name field
-      var options      = new ContactFindOptions()
+      let options      = new ContactFindOptions()
       options.filter   = searchString
       options.multiple = true
       options.desiredFields = [navigator.contacts.fieldType.id,navigator.contacts.fieldType.displayName,navigator.contacts.fieldType.phoneNumbers,navigator.contacts.fieldType.name]
       options.hasPhoneNumber = true
-      var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name,navigator.contacts.fieldType.phoneNumbers,navigator.contacts.fieldType.addresses]
-      navigator.contacts.find(fields, this.onSuccess, onError, options)
+      let fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name,navigator.contacts.fieldType.phoneNumbers,navigator.contacts.fieldType.addresses]
+      navigator.contacts.find(fields, this.onSuccess, this.onError, options)
     },
     onSuccess (contacts) {
       this.contacts = contacts
-      console.log(contacts)
+    },
+    onError (contactError) {
+      alert('onError!')
     }
 
   },

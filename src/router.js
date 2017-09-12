@@ -34,10 +34,6 @@ export default new VueRouter({
           component: load('Manage_data')
         },
         {
-          path: 'fillform/:id',
-          component: load('Fillform')
-        },
-        {
           path: 'edit_profile',
           component: load('Edit_profile')
         },

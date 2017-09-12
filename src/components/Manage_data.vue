@@ -4,6 +4,7 @@
         <span class="desktop-only">Your Contact List</span>
         <span class="mobile-only">Your Contact List</span>
       </p>
+      <p>
       <q-search
         v-model="searchModel"
         :debounce="600"
@@ -11,28 +12,24 @@
         icon="local_hotel"
         float-label="What is your Contact?"
       />
-      <div class="card " v-for="card in cardList">
+      </p>
+      <div class="card " v-for="contact in contactList">
         <div class="card-title">
-          {{card.layoutname}}
-        </div>
-         <div class="card-media">
-          <button class="primary circular small" @click="openFormView(card.id)">
-            <i>edit</i>
-          </button>
+          <label><strong>Name : </strong></label>
+          {{contact.name.givenName}}
         </div>
         <div class="card-content">
           <div class="item-content">
             <div class="item-label">
-              <p class="item-title">{{card.entityname}}</p>
+               <label><strong>Display Name : </strong></label>
+              <p class="item-title">{{contact.displayName}}</p>
             </div>
           </div>
         </div>
         <div class="card-actions card-no-top-padding">
           <div class="text-grey">
-            {{card.date}}
-          </div>
-          <div>
-            ({{card.totlformsfilled}} filled)
+             <label><strong>Phone : </strong></label>
+            {{contact.phoneNumbers[0].value}}
           </div>
           <div class="auto"></div> 
           <button class="warning clear small" ><i class="on-left">eye</i>view</button>
@@ -45,72 +42,62 @@
 import Router from 'router'
 
 /* global appconfig ,axios */
-class Card {
-  constructor (layoutname, entityname, date, totlformsfilled, fillformurl) {
-    this.layoutname = layoutname
-    this.entityname = entityname
-    this.date = date
-    this.totlformsfilled = totlformsfilled
-    this.fillformurl = fillformurl
-    this.id = ''
-  }
-}
-
-function mapCards (data) {
-  var List = []
-  data.forEach(el => {
-    console.log(el)
-    var glblcard = new Card()
-    glblcard.layoutname = el.name
-    glblcard.entityname = el.layout_entity.name
-    glblcard.date = el.updated_at
-    glblcard.totlformsfilled = el.filled_forms.length
-    glblcard.fillformurl = ''
-    glblcard.id = el.id
-    List.push(glblcard)
-  })
-
-  return List
-}
-function onSuccess(contacts) {
-  alert('Found ' + contacts.length + ' contacts.');
-};
 
 function onError(contactError) {
   alert('onError!');
 };
 export default {
   mounted () {
-    this.getLayouts()
-    this.getContacts()
+    // this.getLayouts()
   },
   data () {
     return {
-      cardList: []
+      cardList: [],
+      contacts: [],
+      searchModel: ''
     }
   },
   methods: {
-    getLayouts () {
-      const url = appconfig.dev.BASE_URL + '/api/mobile/get_layouts?api_token=' + appconfig.dev.APP_TOKEN
-      axios.get(url).then(response => {
-        this.cardList = mapCards(response.data.data)
-      })
-    },
+    // getLayouts () {
+    //   const url = appconfig.dev.BASE_URL + '/api/mobile/get_layouts?api_token=' + appconfig.dev.APP_TOKEN
+    //   axios.get(url).then(response => {
+    //     this.cardList = mapCards(response.data.data)
+    //   })
+    // },
     openFormView (id) {
       Router.replace({ path: 'fillform/' + id })
     },
-    getContacts () {
+    getContacts (searchString) {
       // find all contacts with 'Bob' in any name field
-      var options      = new ContactFindOptions();
-      options.filter   = "Bob";
-      options.multiple = true;
-      options.desiredFields = [navigator.contacts.fieldType.id];
-      options.hasPhoneNumber = true;
-      var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name];
-      navigator.contacts.find(fields, onSuccess, onError, options);
+      var options      = new ContactFindOptions()
+      options.filter   = searchString
+      options.multiple = true
+      options.desiredFields = [navigator.contacts.fieldType.id,navigator.contacts.fieldType.displayName,navigator.contacts.fieldType.phoneNumbers,navigator.contacts.fieldType.name]
+      options.hasPhoneNumber = true
+      var fields       = [navigator.contacts.fieldType.displayName, navigator.contacts.fieldType.name,navigator.contacts.fieldType.phoneNumbers,navigator.contacts.fieldType.addresses]
+      navigator.contacts.find(fields, this.onSuccess, onError, options)
+    },
+    onSuccess (contacts) {
+      this.contacts = contacts
+      console.log(contacts)
     }
 
+  },
+  computed: {
+    contactList () {
+        
+        if(this.searchModel.length > 2)
+        {
+          this.getContacts(this.searchModel)
+        }
+
+        if(this.contacts.length >0)
+          return this.contacts
+        else
+          return []
+    }
   }
+
 }
 
 </script>
